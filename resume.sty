@@ -1,0 +1,271 @@
+% ============================================================
+%  resume.sty — Generalized LaTeX Resume Template
+%
+%  This resume is designed to be dense. Adjust as needed by suggested values. 
+% ============================================================
+
+\ProvidesPackage{resume}
+
+% ============================================================
+%  PACKAGES
+% ============================================================
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{geometry}
+\usepackage{etoolbox}
+
+% ============================================================
+%
+%  ┌─────────────────────────────────────────────────────────┐
+%  │               SPACING CONTROLS                          │
+%  │                                                         │
+%  │  Every layout gap is set here — nowhere else.           │
+%  │  Change a value → it updates everywhere automatically.  │
+%  │  Negative values pull things CLOSER together.           │
+%  │  Positive values push things FURTHER apart.             │
+%  │                                                         │
+%  └─────────────────────────────────────────────────────────┘
+%
+% ============================================================
+
+% --- PAGE MARGINS -------------------------------------------
+%  Dense: 0.55in  |  Normal: 0.65in  |  Spacious: 0.80in
+\newlength{\ResumeMargin}
+\setlength{\ResumeMargin}{0.45in}
+
+% --- TITLE / BIO --------------------------------------------
+%  Gap above bio (between the name row (the bottom thing on the right hand side and bio text).
+%  Dense: 4pt  |  Normal: 6pt  |  Spacious: 8pt
+\newlength{\TitleBioAbove}
+\setlength{\TitleBioAbove}{4pt}
+
+%  Gap below bio (between bio text and the first section (most likely education)).
+%  Dense: 4pt  |  Normal: 6pt  |  Spacious: 8pt
+\newlength{\TitleBioBelow}
+\setlength{\TitleBioBelow}{4pt}
+
+% --- SECTION HEADINGS ---------------------------------------
+%  Space between the last entry in a section and the next section.
+%  Dense: -18pt  |  Normal: -12pt  |  Spacious: -8pt
+\newlength{\SecAbove}
+\setlength{\SecAbove}{-18pt}
+
+%  Space between the rule (the long line) and the first entry below it.
+%  Dense: -5pt  |  Normal: -3pt  |  Spacious: -2pt
+\newlength{\SecBelow}
+\setlength{\SecBelow}{-5pt}
+
+% --- SUBHEADING ENTRIES -------------------------------------
+%  Space added above each role/title row.
+%  Dense: -2pt  |  Normal: 0pt  |  Spacious: 2pt
+\newlength{\SubheadAbove}
+\setlength{\SubheadAbove}{-2pt}
+
+%  Space between the role/title row and its first bullet.
+%  Dense: 0pt  |  Normal: 1pt  |  Spacious: 2pt (looks weird)
+\newlength{\SubheadBulletPull}
+\setlength{\SubheadBulletPull}{0pt}
+
+% --- BULLET LIST --------------------------------------------
+%  Gap after the last bullet of each entry. There are a few spaces that compile
+%  Dense: 5pt  |  Normal: 8pt  |  Spacious: 12pt
+\newlength{\ItemListAfter}
+\setlength{\ItemListAfter}{5pt}
+
+% --- EDUCATION ----------------------------------------------
+%  Gap between university row and degree, and degree to coursework.
+%  Dense: -2pt  |  Normal: 0pt  |  Spacious: 2pt
+\newlength{\EduInnerGap}
+\setlength{\EduInnerGap}{-2pt}
+
+%  Gap between bullets in the Education Block.
+%  Dense: -5pt  |  Normal: -2pt  |  Spacious: 2pt
+\newlength{\EduAfter}
+\setlength{\EduAfter}{0pt}
+
+
+% ============================================================
+%  APPLY MARGINS
+% ============================================================
+\geometry{
+  top    = \ResumeMargin,
+  bottom = \ResumeMargin,
+  left   = \ResumeMargin,
+  right  = \ResumeMargin
+}
+
+
+% ============================================================
+%  GLOBAL PAGE STYLE
+% ============================================================
+\pagestyle{empty}       % no headers or footers
+\hypersetup{hidelinks}  % no colored link boxes
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+\renewcommand{\labelitemi}{$\circ$}  % open-circle sub-bullets
+
+
+% ============================================================
+%  SECTION HEADING FORMAT
+%  Uses \SecAbove and \SecBelow from SPACING CONTROLS above.
+% ============================================================
+\titleformat{\section}{
+  \vspace{\SecAbove}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{\SecBelow}]
+
+
+% ============================================================
+%  CUSTOM COMMANDS
+% ============================================================
+
+% ------------------------------------------------------------
+% \resumeTitle{Name}{ContactLine1}{ContactLine2}{ContactLine3}
+%
+%   Produces:
+%     Name (huge, bold, left)(centered)     ContactLine1 (right)
+%                                           ContactLine2 (right)
+%                                           ContactLine3 (right)
+
+%
+%   To change the name size: replace \Huge with
+%     \huge (slightly smaller) or \LARGE (smaller still)
+% ------------------------------------------------------------
+\newcommand{\resumeTitle}[4]{%
+  \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+    \multirow{3}{*}{\textbf{\Huge #1}} & #2 \\
+                                       & #3 \\
+                                       & #4 \\
+  \end{tabular*}%
+}
+
+% ------------------------------------------------------------
+% \resumeBio{Text}
+%   Optional 1-2 sentence profile summary below the title.
+%   Uses \TitleBioAbove and \TitleBioBelow from SPACING CONTROLS.
+%   To remove the bio: delete the \resumeBio{} line in main.tex.
+% ------------------------------------------------------------
+\newcommand{\resumeBio}[1]{%
+  \vspace{\TitleBioAbove}%
+  \small{#1}%
+  \vspace{\TitleBioBelow}%
+}
+
+% ------------------------------------------------------------
+% \resumeEducation{University}{Date}{Degree}{Coursework}
+%
+%   Produces:
+%     * University Name                         Italic Date
+%     Italic Degree
+%       o Coursework text
+%
+%   Uses \EduInnerGap and \EduAfter from SPACING CONTROLS.
+% ------------------------------------------------------------
+\newcommand{\resumeEducation}[4]{%
+  \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+    $\bullet$ \textbf{#1} & \textit{#2} \\
+  \end{tabular*}%
+  \vspace{\EduInnerGap}%
+  \vspace{2pt}
+  \hspace{0pt}\textit{#3}\\
+  \vspace{\EduInnerGap}%
+  \begin{itemize}[leftmargin=1.6em, topsep=0pt, itemsep=0pt, parsep=0pt]
+    \item[$\circ$] \small{#4}
+  \end{itemize}%
+  \vspace{\EduAfter}%
+}
+
+% ------------------------------------------------------------
+% \resumeExtracurriculars{Text}
+%   An extra open-circle bullet after \resumeEducation.
+%   Use for clubs, honors, GPA, etc.
+%   Call immediately after \resumeEducation{}.
+%   To skip it: just don't include the line in main.tex.
+% ------------------------------------------------------------
+\newcommand{\resumeExtracurriculars}[1]{%
+  \vspace{-1pt}%
+  \begin{itemize}[leftmargin=1.6em, topsep=0pt, itemsep=0pt, parsep=0pt]
+    \item[$\circ$] \small{#1}
+  \end{itemize}%
+  \vspace{1pt}%
+}
+
+% ------------------------------------------------------------
+% \resumeSubheading{Role}{Company}{Date}{Location}
+%
+%   Produces:
+%     * Bold Role - Bold Italic Company         Italic Date
+%
+%   The 4th argument {Location} is accepted but hidden by default
+%   to keep the header clean. To display it, change the line to:
+%     $\bullet$ \textbf{#1} - \textbf{\textit{#2}} & \textit{#3} | #4 \\
+%
+%   Uses \SubheadAbove and \SubheadBulletPull from SPACING CONTROLS.
+% ------------------------------------------------------------
+\newcommand{\resumeSubheading}[4]{%
+  \vspace{\SubheadAbove}%
+  \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+    $\bullet$ \textbf{#1}\ifblank{#2}{}{ - \textbf{\textit{#2}}} & \textit{#3}\ifblank{#4}{}{ \textbar\ #4} \\
+  \end{tabular*}\vspace{\SubheadBulletPull}%
+}
+
+% ------------------------------------------------------------
+% \resumeItem{Text}
+%   One open-circle bullet under a \resumeSubheading.
+%   Keep bullets to 1 clean line or exactly 2 full lines.
+%   Avoid orphan lines (a few stray words on a second line).
+% ------------------------------------------------------------
+\newcommand{\resumeItem}[1]{%
+  \item \small{#1}%
+}
+
+% ------------------------------------------------------------
+% \resumeItemListStart / \resumeItemListEnd
+%   Wrap all \resumeItem calls for one entry between these two.
+%   Uses \ItemListAfter from SPACING CONTROLS.
+% ------------------------------------------------------------
+\newcommand{\resumeItemListStart}{%
+  \begin{itemize}[leftmargin=0.25in, topsep=0pt, itemsep=0pt, parsep=0pt]%
+}
+\newcommand{\resumeItemListEnd}{%
+  \end{itemize}\vspace{\ItemListAfter}%
+}
+
+% ------------------------------------------------------------
+% \resumeSkillsStart / \resumeSkillsEnd
+%   Wrap all \resumeSkill lines between these two.
+%   Works exactly like \resumeItemListStart / End.
+% ------------------------------------------------------------
+\newcommand{\resumeSkillsStart}{%
+  \begin{itemize}[leftmargin=0.25in, topsep=0pt, itemsep=0pt, parsep=0pt]%
+}
+\newcommand{\resumeSkillsEnd}{%
+  \end{itemize}%
+}
+ 
+% ------------------------------------------------------------
+% \resumeSkill{Category}{Skills list}
+%
+%   Produces:
+%     • Bold Category: skills list in regular weight
+%
+%   Example:
+%     \resumeSkill{Technical}{Python, SQL, Excel, Tableau}
+%     \resumeSkill{Methods}{Lean Six Sigma, Process Mapping}
+%     \resumeSkill{Non-Technical}{Public Speaking, Communication}
+% ------------------------------------------------------------
+\newcommand{\resumeSkill}[2]{%
+  \item[\textbullet] \small{\textbf{#1}: #2}%
+}
+
+% ============================================================
+%  END OF resume.sty
+% ============================================================

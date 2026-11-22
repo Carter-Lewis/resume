@@ -1,0 +1,141 @@
+% ============================================================
+%  main.tex — Resume using resume.sty
+%
+%  QUICK START
+%  ───────────
+%  1. Replace all filler content below with your own.
+%  2. To adjust spacing or margins, open resume.sty and edit
+%     the values in the SPACING CONTROLS section at the top.
+%     You never touch this file for layout changes.
+%
+%  FONT SIZE TIP: Change 11pt below to 10pt (denser text)
+%  or 12pt (more breathing room) to shift the whole document.
+% ============================================================
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{resume}   % loads resume.sty from the same folder
+
+%-------------------------------------------
+\begin{document}
+
+
+% ============================================================
+%  TITLE BLOCK
+%  \resumeTitle{Name}{ContactLine1}{ContactLine2}{ContactLine3}
+%
+%  Put whatever you want on each right-side line:
+%  email, phone, website, LinkedIn, GitHub, location, etc.
+% ============================================================
+\resumeTitle
+  {Carter Lewis}
+  {carterlewis617@gmail.com}
+  {806-781-0953}
+  {\href{https://carter-lewis.github.io}{https://carter-lewis.github.io}}
+
+
+% ============================================================
+%  BIO LINE (optional)
+%  \resumeBio{Your summary here.}
+%
+%  1-2 sentences. Delete this line entirely if you don't want one.
+% ============================================================
+\resumeBio{Cross-functional leader and CS student eager to bring experience coordinating teams, driving partnerships, and
+automating data flows to new technical challenges.}
+
+
+% ============================================================
+%  EDUCATION
+%  \resumeEducation{University}{Date}{Degree}{Coursework}
+%
+%  Then call \resumeExtracurriculars{} for a second sub-bullet
+%  (clubs, honors, GPA). Delete that line if you don't need it.
+% ============================================================
+\section{Education}
+\vspace{-2pt}
+
+\resumeEducation
+  {Baylor University}
+  {Expected May 2027}
+  {Bachelor of Science in Computer Science \textbar\ GPA: 3.61}
+  {Relevant Coursework: Data Structures and Algorithms, Data Communications, Operating Systems, Software Engineering Methodology, Statistics, Discrete Mathematics}
+
+% ============================================================
+%  EXPERIENCE
+%  \resumeSubheading{Role}{Company}{Date}{Location}
+%  Wrap bullets in \resumeItemListStart ... \resumeItemListEnd.
+%  Each bullet is \resumeItem{Text}.
+% ============================================================
+\section{Experience}
+
+\resumeSubheading{IT Leadership Development Program Intern}{Textron}{June 2026 -- Present}{Hurst, TX}
+\resumeItemListStart
+  \resumeItem{Engineered an automated CMDB audit and remediation tool in ServiceNow to detect server records violating the naming schema, flagging non-compliant entries and improving CI data integrity across 89\% of the server inventory.}
+  \resumeItem{Designed and deployed an AI-powered change request summarization tool via Copilot Studio integration in ServiceNow, condensing change documentation for approvers.}
+  \resumeItem{Initiated and built a knowledge base remediation solution using a custom UI Builder interface and text-matching algorithm to identify configuration item associations, streamlining KB maintenance across 1,000 articles.}
+\resumeItemListEnd
+
+\resumeSubheading{Software Developer Intern}{Texas Farm Bureau Insurance}{March 2026 -- Present}{Waco, TX}
+\resumeItemListStart
+  \resumeItem{Identified and resolved data inconsistencies within Vista policy records, improving data accuracy for downstream underwriting and reporting processes and reducing data error rate by approximately 50\%.}
+  \resumeItem{Developed a Python-based automation solution to generate daily, weekly, and monthly underwriter reports, replacing manual report generation and saving 2+ hours of manual report generation per week.}
+  \resumeItem{Built a Python tool to automatically complete documentation for Majesco Prior Term Cancellation data corrections.}
+\resumeItemListEnd
+
+\resumeSubheading{Founding Director of Recruitment}{University Innovation Fellows}{July 2024 -- Present}{Waco, TX}
+\resumeItemListStart
+  \resumeItem{Developed structured recruitment process, successfully extending cohort by 300\% over 3 years.}
+  \resumeItem{Procured over \$25\,000 in operational expenses through collaboration with campus partners and academic departments.}
+  \resumeItem{Attended 2025 UIF meetup and leadership conference at the University of Twente in Enchede, Netherlands.}
+\resumeItemListEnd
+
+\resumeSubheading{Community Leader (CL)}{Baylor Campus Living and Learning}{August 2024 -- May 2025}{Waco, TX}
+\resumeItemListStart
+  \resumeItem{Cultivated authentic Christian community in a residential setting with 20+ honors residents.}
+  \resumeItem{Responded to on-call crises and followed emergency protocol by effectively communicating with On-Call Residence Hall Director, Baylor University Police Department, and other required personnel.}
+  \resumeItem{Collaborated with fellow CL's and campus partners to plan events promoting learning goals of Faith Development, Self-Advocacy, Cultural Humility, Intellectual Development, and Life Together.}
+\resumeItemListEnd
+
+
+
+% ============================================================
+%  PROJECTS
+%  Same format as Experience.
+%  Use {Project Name}{Context or Client}{Date}{} for the args.
+% ============================================================
+\section{Projects}
+\resumeSubheading{First Person Multiplayer Game Protocol}{}{Spring 2026}{\href{https://github.com/Carter-Lewis/fps_network_protocol}{github.com/Carter-Lewis/fps\_network\_protocol}}
+\resumeItemListStart
+  \resumeItem{Architected a custom multiplayer game server hosted via AWS EC2 and network protocol in Rust, supporting QUIC and WebTransport for browser clients alongside a TCP/UDP hybrid scheme for desktop clients.}
+  \resumeItem{Implemented client-side prediction and server-side reconciliation to deliver responsive, lag-resistant gameplay across heterogeneous network conditions and client platforms.}
+  \resumeItem{Configured DNS, HTTPS, and TLS to ensure a secure connection for browser clients.}
+\resumeItemListEnd
+
+\resumeSubheading{AWS Cost Optimization Tool}{}{May 2026 -- Present}{\href{https://github.com/Carter-Lewis/cloud_cost_optimization}{github.com/Carter-Lewis/cloud\_cost\_optimization}}
+\resumeItemListStart
+  \resumeItem{Built a Python-based AWS cost tracking tool using Boto3 and the AWS Cost Explorer API to aggregate and visualize spend across services and accounts.}
+  \resumeItem{Generated automated rightsizing and optimization recommendations, and flagged spending anomalies via rule-based threshold monitoring, surfacing avoidable cloud spend before it compounds.}
+\resumeItemListEnd
+
+\resumeSubheading{Baylor "Leave No Trace"}{Baylor UIF}{August 2024 -- Present}{}
+\resumeItemListStart
+  \resumeItem{Spearheaded food sustainability initiative, achieving 10\% food waste reduction across Baylor dining halls in collaboration with Chartwells Dining Services.}
+  \resumeItem{Developed "Sic 'em Sampling" to modify consumer behavior to favor smaller portions of food and streamlined food waste data collection to accurately measure results.}
+  \resumeItem{Created 4 on-campus student jobs to support operations, building a long-term model for program continuity.}
+\resumeItemListEnd
+
+% ============================================================
+%  SKILLS
+%  \resumeSkill{Category}{Comma-separated list}
+%  Add or remove \resumeSkill lines freely.
+% ============================================================
+\section{Skills}
+\resumeSkillsStart
+  \resumeSkill{Languages / Frameworks}{C/C++, Rust, Java, Javascript, Python, SQL, Next.js}
+  \resumeSkill{Non-Technical}{Leadership, Public Speaking, Cross-Functional Collaboration, Communication, Adaptability}
+  \resumeSkill{ServiceNow}{Business Rules, Client Scripts, Script Includes, Flow Designer, REST API integrations, UI Builder}
+\resumeSkillsEnd
+
+
+%-------------------------------------------
+\end{document}
